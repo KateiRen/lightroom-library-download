@@ -1,0 +1,55 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.venv/
+venv/
+.env
+.env.*
+.python-version
+
+# uv
+.uv/
+.venv/
+
+# Local browser session and generated artifacts
+.lightroom-browser-profile/
+links.md
+*.log
+*.tmp
+*.bak
+*.orig
+
+# Download output
+G:/Lightroom Download/
+Lightroom Download/
+Download/
+*.zip
+*.rar
+*.7z
+*.tar
+*.gz
+*.tgz
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Test/cache outputs
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+coverage.xml
+htmlcov/
+
+# Generated archive listings
+lightroom-library-download-links-*.md
+
+# Local docs not meant for source control
+notes/
+scratch/
