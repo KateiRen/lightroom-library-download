@@ -83,6 +83,10 @@ For a real example, the archive set in this project contained 254 ZIP files with
 
 This is why these scripts matter: they make the process possible at all by capturing the correct signed URLs from Adobe, reusing the authenticated browser session, validating the output, and retrying when Adobe invalidates the old archive links.
 
+## License
+
+This project is licensed under the MIT License. See the LICENSE file for details.
+
 ## Important notes
 
 - The downloader prefers `links.md` as the source for archive URLs.
