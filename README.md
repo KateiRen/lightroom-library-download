@@ -4,20 +4,19 @@ This project downloads Adobe Lightroom archive files from a prepared list of sig
 
 ## Why
 
-After many years of buying new annual subscriptions to benefit from Lightroom CC and 1TB of online storage I found out, that I am barely using the service anymore and that I wouls be better of by combining my stored pictures with my automated camera uploads to OneDrive into a new archive sitting on my Synology NAS.
+After many years of buying new annual subscriptions to benefit from Lightroom CC and 1TB of online storage I found out, that I am barely using the service anymore and that I would be better of by combining my stored pictures with my automated camera uploads to OneDrive into a new archive sitting on my Synology NAS.
 
 Initially I thought it would need some hack to get all the photos downloaded, until I discovered that Adobe actually offers exact that option.
 However, in my case the download page contained 258 links to distinct zip files With a combined size of 583 GB. Have a lot of fun downloading this manually...
 
-Thats when I discovered the offical export option exists but is practically useless until you apply some automation. 
+So there is a service to make downloads of your online photo library, but its practically useless until you apply some automation. 
 
 ## First step: prepare the Lightroom archive
 
-You can now download all your synced Lightroom files (photos and videos) from your device as ZIP archives.
-
-Go to [https://lightroom.adobe.com/lightroom-library-download](https://lightroom.adobe.com/lightroom-library-download)
-
-Sign in with your Google, Facebook, Apple, Microsoft, or LINE account credentials for your Adobe account.
+Turns out there is an official way to get access to all your files stored in the Adobe cloud:
+> You can now download all your synced Lightroom files (photos and videos) from your device as ZIP archives.
+> Go to [https://lightroom.adobe.com/lightroom-library-download](https://lightroom.adobe.com/lightroom-library-download)
+> Sign in with your Google, Facebook, Apple, Microsoft, or LINE account credentials for your Adobe account.
 
 Choose Export my photos to begin preparing your files in ZIP format.
 This will take quite some time and you will be notified by email when its done.
@@ -28,8 +27,8 @@ This will take quite some time and you will be notified by email when its done.
 ## The Automated Workflow
 
 1. Run the extractor (extract-lightroom-download-links.py) to open Adobe Lightroom in a browser and capture the archive links. This will store all download urls in `links.md`.
-2. Run the downloader to fetch the archive files into the target download folder (configured in config.py).
-4. If Adobe rejects a signed URL with `401` or `403`, the downloader will invoke the extractor again to get new working links.
+2. Run the downloader to fetch the archive files into the target download folder (configured in config.py). If Adobe rejects a signed URL with `401` or `403`, the downloader will invoke the extractor again to get new working links.
+3. Last, run restore-downloads.py to extract file by file and delete the archive once the extraction is done.
 
 ## Scripts
 
@@ -89,7 +88,6 @@ This project is licensed under the MIT License. See the LICENSE file for details
 
 ## Important notes
 
-- The downloader prefers `links.md` as the source for archive URLs.
 - It skips files that already exist by filename.
 - Adobe site authentication usually remains active even when the signed archive URLs are no longer valid, so rebuilding `links.md` from the browser session usually works without re-signing in.
 - With a real archive set like this one, the total transfer can be hundreds of GB and take many hours, so automation is essential to keep the process stable and resumable.
